@@ -22,6 +22,15 @@ input{
         }
     }
 }
+.alert{
+    margin-top: 20px;
+    background-color: rgb(250, 219, 219);
+    color: rgb(247, 7, 7);
+    border-radius: 7px;
+    padding: 8px;
+    font-weight: bold;
+    font-size: small;
+}
 button{
     grid-column: 1/-1;
     padding: 8px;

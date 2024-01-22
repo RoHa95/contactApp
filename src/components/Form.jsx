@@ -1,24 +1,36 @@
 import { useState } from "react";
 import styles from "./form.module.scss";
+import ContactList from "./ContactList";
+import inputs from "../constants/inputs.js"
+import { v4 } from "uuid";
 function Form() {
     const [contacts, setContacts] = useState([]);
-
+    const [alert, setAlert] = useState("");
     const [form, setForm] = useState({
+        id:"",
         name : '',
         lastname:'',
         email:'',
         phone:''
     });
     const changeHandler = (event)=>{
+       setAlert("");
         const name = event.target.name;
         const value = event.target.value;
         setForm(form => ({...form, [name] : value}));
     }
     const addHandler = event =>{
         event.preventDefault();
-       setContacts(contacts=> ([...contacts,form]));
+        if(!form.name || !form.lastname || !form.email || !form.phone){
+            setAlert("please enter valid data");
+            return;
+        }
+        setAlert("");
+        const newContacts = {...form, id: v4()};
+       setContacts(contacts=> ([...contacts,newContacts]));
        console.log(contacts);
        setForm({
+        id:"",
         name : '',
         lastname:'',
         email:'',
@@ -26,15 +38,20 @@ function Form() {
        })
     }
     return (
+        <>
         <div className={styles.container}>
             <form>
-                <input type="text" name="name" placeholder="Name" value={form.name} onChange={changeHandler} />
-                <input type="text" name="lastname" placeholder="Last Name" value={form.lastname} onChange={changeHandler} />
-                <input type="email" name="email" placeholder="Email" value={form.email} onChange={changeHandler} />
-                <input type="number" name="phone" placeholder="Phone" value={form.phone} onChange={changeHandler} />
+                {
+                    inputs.map((input,index)=>(<input key={index} type={input.type} name={input.name} placeholder={input.placeholder} value={form[input.name]} onChange={changeHandler} />
+                    ))
+                }
                 <button onClick={addHandler}>Add Contact</button>
             </form>
         </div>
+        <>{alert&& <p className={styles.alert}>{alert}</p>}</>
+
+        <ContactList contacts={contacts}></ContactList>
+        </>
     );
 }
 
