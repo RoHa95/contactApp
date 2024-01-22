@@ -1,0 +1,39 @@
+$primoryColor : rgb(79, 19, 243);
+@import "./Mixins";
+.container{
+    padding: 20px 45px;
+@include box-shadow;
+}
+form{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+input{
+    border: none;
+    padding: 8px;
+    box-shadow: rgba(60,64,67,0.3) 0px 1px 2px 0px, rgba(60,64,67,0.15) 0px 1px 3px 1px;
+    border-radius: 7px;
+    outline: none;
+    &:focus{
+        border: $primoryColor 1.5px solid;
+        &::placeholder{
+            color: $primoryColor;
+        }
+    }
+}
+button{
+    grid-column: 1/-1;
+    padding: 8px;
+    background-color: $primoryColor;
+    border: $primoryColor 1px solid;
+    border-radius: 7px;
+    color: #fff;
+   
+}
+@media (max-width:768px) {
+    form{
+        display: flex;
+        flex-direction: column;
+    }
+}
