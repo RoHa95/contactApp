@@ -1,4 +1,5 @@
 $primoryColor : rgb(79, 19, 243);
+@import "./Mixins";
 .container{
     display: flex;
     flex-direction: column;
@@ -7,8 +8,7 @@ $primoryColor : rgb(79, 19, 243);
     margin: 50px 0;
 }
 h1{
-    color: $primoryColor;
-    margin-bottom: 20px;
+   @include text-title;
 }
 p{
     color: gray;

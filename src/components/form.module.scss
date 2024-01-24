@@ -22,6 +22,10 @@ input{
         }
     }
 }
+.alertContainer{
+    height: 40px;
+    width: 100%;
+}
 .alert{
     margin-top: 20px;
     background-color: rgb(250, 219, 219);
@@ -30,6 +34,7 @@ input{
     padding: 8px;
     font-weight: bold;
     font-size: small;
+
 }
 button{
     grid-column: 1/-1;
@@ -38,7 +43,8 @@ button{
     border: $primoryColor 1px solid;
     border-radius: 7px;
     color: #fff;
-   
+   &:hover{
+        box-shadow: $primoryColor 0px 7px 29px 0px;   }
 }
 @media (max-width:768px) {
     form{

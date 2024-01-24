@@ -1,22 +1,20 @@
 import styles from "./contactList.module.scss";
+import ContactItem from "./ContactItem";
 // import React from 'react';
 
-function ContactList({contacts}) {
+function ContactList({contacts,deleteHandler}) {
   console.log(contacts);
     return (
        
-        <div>
-           <h3>Contacts List</h3>
-           <ul>
+        <div >
+           <h3>Contacts List</h3> 
+           {contacts.length ? (<ul>
             {contacts.map(contact=> (
-                <li key={contact.id}>
-                    <span>{contact.name + " "} {contact.lastname}</span>
-                    <span>{contact.email}</span>
-                    <span>{contact.phone}</span>
-                </li>
+                <ContactItem key={contact.id} contact={contact} deleteHandler={deleteHandler}></ContactItem>
             ) )
             }
-           </ul>
+           </ul>) : <p className={styles.message}>No Contact yet!</p>}
+           
         </div>
     );
 }
